@@ -210,9 +210,7 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
     justify-self: center;
     margin-top: 24px;
   }
-  .orb {
-    display: none;
-  }
+  
 }
 
 /* Footer */
@@ -347,7 +345,7 @@ footer {
   display: none;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
   cursor: pointer;
 }
