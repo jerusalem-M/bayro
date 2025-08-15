@@ -19,7 +19,7 @@
 html,body{height:100%; width:100%}
 body{
   margin:0;
-  background:var(--paper); /* full-page white background */
+  background:var(--paper);
   color:var(--ink);
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   line-height:1.55;
@@ -37,8 +37,8 @@ body{
 .hero{position:relative}
 .hero img{
   width:100%;
-  height:auto; /* let image show full height */
-  object-fit:cover; /* fills width, avoids weird stretching */
+  height:auto;
+  object-fit:cover;
   display:block;
 }
 
@@ -61,7 +61,7 @@ body{
 .brand{
   position:absolute;
   left:clamp(22px,7vw,72px);
-  bottom: clamp(450px, 415vw, 490px); /* moved higher */
+  bottom: clamp(450px, 415vw, 490px);
   font-family:'Playfair Display',serif;
   font-weight:1000;
   letter-spacing:.05em;
@@ -210,7 +210,6 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
     justify-self: center;
     margin-top: 24px;
   }
-  
 }
 
 /* Footer */
@@ -291,8 +290,8 @@ footer {
 @media (max-width: 768px) {
   .nav { display: none; }
   .brand {
-    font-size: clamp(72px, 20vw, 120px);
-    top: 60px;
+    font-size: clamp(60px, 18vw, 100px); /* smaller brand font */
+    top: 90px; /* lower position */
     bottom: auto;
   }
   .grid {
@@ -335,11 +334,21 @@ footer {
     margin-top: 40px;
     text-align: center;
   }
-  /* Justify About Me text */
   .copy p {
     text-align: justify;
   }
+
+  /* Smaller dropdown icon and EN, moved upward */
+  .lang {
+    font-size: 12px;
+    transform: translateY(-4px);
+  }
+  .lang svg {
+    width: 14px;
+    height: 14px;
+  }
 }
+
 /* Hamburger styles */
 .hamburger {
   display: none;
@@ -389,4 +398,18 @@ footer {
 }
 .card:hover img {
   transform: scale(1.05);
+}
+
+/* === Mobile gallery: 2 columns, images in pairs === */
+@media (max-width: 768px) {
+  .featured .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .featured .card {
+    padding: 4px;
+  }
+  .featured .card img {
+    aspect-ratio: 1 / 1;
+  }
 }
