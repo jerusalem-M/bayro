@@ -38,19 +38,76 @@
     </header>
 
     <!-- =================== FEATURED =================== -->
-    <section id="gallery" class="featured">
-      <h2>Featured collection</h2>
-      <div class="grid">
-        <div class="card"><img src="assets/image1.jpg" alt="01"><span class="idx">01</span></div>
-        <div class="card"><img src="assets/image2.jpg" alt="02"><span class="idx">02</span></div>
-        <div class="card"><img src="assets/image3.jpg" alt="03"><span class="idx">03</span></div>
-        <div class="card"><img src="assets/image4.jpg" alt="04"><span class="idx">04</span></div>
-        <div class="card"><img src="assets/image5.jpg" alt="05"><span class="idx">05</span></div>
-        <div class="card"><img src="assets/image6.jpg" alt="06"><span class="idx">06</span></div>
-        <div class="card"><img src="assets/image7.jpg" alt="07"><span class="idx">07</span></div>
-        <div class="card"><img src="assets/image8.jpg" alt="08"><span class="idx">08</span></div>
-      </div>
-    </section>
+<section id="gallery" class="featured">
+  <h2>Featured collection</h2>
+  <div class="grid">
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image1.jpg" alt="Golden Echo">
+      <div class="label"><span class="idx">01</span><span class="title">Golden Echo</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image2.jpg" alt="Whispers of Quartz">
+      <div class="label"><span class="idx">02</span><span class="title">Whispers of Quartz</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image3.jpg" alt="Sunlit Thread">
+      <div class="label"><span class="idx">03</span><span class="title">Sunlit Thread</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image4.jpg" alt="Velvet Ember">
+      <div class="label"><span class="idx">04</span><span class="title">Velvet Ember</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image5.jpg" alt="Moonlace">
+      <div class="label"><span class="idx">05</span><span class="title">Moonlace</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image6.jpg" alt="Dust & Dusk">
+      <div class="label"><span class="idx">06</span><span class="title">Dust & Dusk</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image7.jpg" alt="Crimson Bloom">
+      <div class="label"><span class="idx">07</span><span class="title">Crimson Bloom</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card" onclick="toggleDescription(this)">
+      <img src="assets/image8.jpg" alt="The Woven Light">
+      <div class="label"><span class="idx">08</span><span class="title">The Woven Light</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+
+    <!-- Last 4 cards -->
+    <div class="card hidden" onclick="toggleDescription(this)">
+      <img src="assets/image9.jpg" alt="Amber Drift">
+      <div class="label"><span class="idx">09</span><span class="title">Amber Drift</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card hidden" onclick="toggleDescription(this)">
+      <img src="assets/image10.jpg" alt="Celestial Grain">
+      <div class="label"><span class="idx">10</span><span class="title">Celestial Grain</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card hidden" onclick="toggleDescription(this)">
+      <img src="assets/image11.jpg" alt="Sands of Grace">
+      <div class="label"><span class="idx">11</span><span class="title">Sands of Grace</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+    <div class="card hidden" onclick="toggleDescription(this)">
+      <img src="assets/image12.jpg" alt="Opal Memory">
+      <div class="label"><span class="idx">12</span><span class="title">Opal Memory</span></div>
+      <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+    </div>
+  </div>
+
+  <button id="viewMore" class="view-more">View More</button>
+</section>
+
 
     <!-- =================== BRIEF / ART DECO =================== -->
     <section class="brief">
@@ -146,6 +203,22 @@
     }, { threshold: 0.2 });
 
     cards.forEach(card => observer.observe(card));
+    // View More button logic
+    const viewMoreBtn = document.getElementById('viewMore');
+    const hiddenCards = document.querySelectorAll('.card.hidden');
+
+    viewMoreBtn.addEventListener('click', () => {
+      hiddenCards.forEach(card => {
+        card.classList.remove('hidden');
+        card.classList.add('visible'); // triggers animation
+      });
+    viewMoreBtn.style.display = 'none';
+  });
+  function toggleDescription(card) {
+  card.classList.toggle('active');
+}
+
+
   </script>
 </body>
 </html>

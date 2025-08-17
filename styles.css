@@ -19,7 +19,7 @@
 html,body{height:100%; width:100%}
 body{
   margin:0;
-  background:var(--paper); /* full-page white background */
+  background:var(--paper);
   color:var(--ink);
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   line-height:1.55;
@@ -37,8 +37,8 @@ body{
 .hero{position:relative}
 .hero img{
   width:100%;
-  height:auto; /* let image show full height */
-  object-fit:cover; /* fills width, avoids weird stretching */
+  height:auto;
+  object-fit:cover;
   display:block;
 }
 
@@ -53,15 +53,15 @@ body{
   z-index:4;
   font-size:14px
 }
-.lang{display:flex; align-items:center; gap:8px; letter-spacing:.04em; opacity:.95}
+.lang{display:flex; color:#C8A165; align-items:center; opacity: .5; gap:8px; letter-spacing:.04em; opacity:.95}
 .lang svg{width:16px; height:16px}
-.nav a{color:#C8A165; text-decoration:none; margin-left:18px; opacity:.9; transition:.2s; font-weight:500}
+.nav a{color:#C8A165; text-decoration:none; margin-left:18px; opacity: 1; transition:.2s; font-weight:500}
 .nav a:hover{opacity:1}
 
 .brand{
   position:absolute;
   left:clamp(22px,7vw,72px);
-  bottom: clamp(450px, 415vw, 490px); /* moved higher */
+  bottom: clamp(450px, 415vw, 490px);
   font-family:'Playfair Display',serif;
   font-weight:1000;
   letter-spacing:.05em;
@@ -79,8 +79,92 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
 /* Featured grid */
 .featured h2{margin:0 0 var(--space); font-size:18px; font-weight:600; letter-spacing:.05em; color:#2d2d2d}
 .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,24px)}
-.card img{width:100%; aspect-ratio:1/1.2; object-fit:cover; display:block; border-radius:4px}
-.card .idx{display:block; margin-top:10px; font-variant-numeric:tabular-nums; color:#7a1712}
+.card img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block; border-radius:4px}
+.card.hidden {
+  display: none;
+}
+
+.label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.label .idx {
+  display:block; margin-top:8px; font-variant-numeric:tabular-nums; color:#7a1712; font-size: 18px; font-weight: 800;
+}
+.label .title {
+  font-style: sans-serif;
+}
+.card {
+  position: relative;
+  cursor: pointer;
+  transition: filter 0.4s ease;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  transition: filter 0.4s ease;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: filter 0.4s ease;
+}
+
+.card .description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%); /* poetic fade-in start */
+  color: white;
+  font-style: italic;
+  font-size: 0.9rem;
+  text-align: justify;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+  padding: 10px;
+  border-radius: 6px;
+  width: 80%;
+
+  /* ✨ Glassmorphism Glow */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ✨ Optional Sparkle Overlay */
+.card .description::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('sparkle.gif'); /* use a soft sparkle animation */
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.card.active img {
+  filter: blur(4px);
+}
+
+.card.active .description {
+  opacity: 1;
+  transform: translate(-50%, -50%); /* poetic fade-in end */
+}
+
+
 @media (max-width:920px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:680px){.grid{grid-template-columns:repeat(2,1fr)} .nav{display:none} .brand{left:20px}}
 
@@ -210,7 +294,6 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
     justify-self: center;
     margin-top: 24px;
   }
-  
 }
 
 /* Footer */
@@ -232,8 +315,8 @@ footer {
   max-width: 420px;
 }
 .collage img {
-  width: 80%;
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  aspect-ratio: 1/ 2;
   object-fit: cover;
   border-radius: 6px;
   max-height: 100px;
@@ -241,7 +324,7 @@ footer {
 }
 .collage img.tall {
   grid-row: span 2;
-  aspect-ratio: 3 / 5;
+  aspect-ratio: 1 / 2;
   object-fit: cover;
   max-height: 220px;
   width: 90%;
@@ -286,13 +369,36 @@ footer {
   font-size: 11px;
   color: #bcbcbc;
 }
+/* View More Button */
+.view-more {
+  display: block;
+  margin: var(--space-lg) auto 0;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.view-more:hover {
+  background-color: #5e120e;
+}
+
+/* Hidden extra grid */
+.extra.hidden {
+  display: none;
+}
+
 
 /* ===== MOBILE FIXES ===== */
 @media (max-width: 768px) {
   .nav { display: none; }
   .brand {
-    font-size: clamp(72px, 20vw, 120px);
-    top: 60px;
+    font-size: clamp(60px, 18vw, 100px); /* smaller brand font */
+    top: 90px; /* lower position */
     bottom: auto;
   }
   .grid {
@@ -335,18 +441,28 @@ footer {
     margin-top: 40px;
     text-align: center;
   }
-  /* Justify About Me text */
   .copy p {
     text-align: justify;
   }
+
+  /* Smaller dropdown icon and EN, moved upward */
+  .lang {
+    font-size: 12px;
+    transform: translateY(-4px);
+  }
+  .lang svg {
+    width: 14px;
+    height: 14px;
+  }
 }
+
 /* Hamburger styles */
 .hamburger {
   display: none;
   background: none;
   border: none;
   font-size: 1rem;
-  color: white;
+  color: #C8A165;
   cursor: pointer;
 }
 
@@ -359,7 +475,7 @@ footer {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 20px;
     padding: 1rem;
     border-radius: 8px;
@@ -389,4 +505,18 @@ footer {
 }
 .card:hover img {
   transform: scale(1.05);
+}
+
+/* === Mobile gallery: 2 columns, images in pairs === */
+@media (max-width: 768px) {
+  .featured .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .featured .card {
+    padding: 4px;
+  }
+  .featured .card img {
+    aspect-ratio: 1 / 1;
+  }
 }
