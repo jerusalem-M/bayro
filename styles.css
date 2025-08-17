@@ -119,23 +119,31 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
   transition: filter 0.4s ease;
 }
 
+.card {
+  position: relative; /* Ensure child absolute elements are scoped */
+  overflow: hidden;   /* Prevent overflow from description */
+}
+
 .card .description {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%); /* poetic fade-in start */
+  transform: translate(-50%, -50%);
   color: white;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw, 1rem);
   text-align: justify;
   opacity: 0;
   transition: opacity 0.6s ease, transform 0.6s ease;
   pointer-events: none;
-  padding: 10px;
-  border-radius: 6px;
-  width: 80%;
+  padding: 12px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 260px;
+  line-height: 1.6;
+  z-index: 10;
 
-  /* ✨ Glassmorphism Glow */
+  /* Glassmorphism */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -164,6 +172,13 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
   transform: translate(-50%, -50%); /* poetic fade-in end */
 }
 
+@media (max-width: 480px) {
+  .card .description {
+    font-size: 0.5rem;
+    padding: 5px;
+    max-width: 180px;
+  }
+}
 
 @media (max-width:920px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:680px){.grid{grid-template-columns:repeat(2,1fr)} .nav{display:none} .brand{left:20px}}
@@ -316,7 +331,7 @@ footer {
 }
 .collage img {
   width: 100%;
-  aspect-ratio: 1/ 2;
+  aspect-ratio: 1 / 2;
   object-fit: cover;
   border-radius: 6px;
   max-height: 100px;
@@ -369,6 +384,7 @@ footer {
   font-size: 11px;
   color: #bcbcbc;
 }
+
 /* View More Button */
 .view-more {
   display: block;
@@ -397,8 +413,8 @@ footer {
 @media (max-width: 768px) {
   .nav { display: none; }
   .brand {
-    font-size: clamp(60px, 18vw, 100px); /* smaller brand font */
-    top: 90px; /* lower position */
+    font-size: clamp(60px, 18vw, 100px);
+    top: 90px;
     bottom: auto;
   }
   .grid {
@@ -422,10 +438,35 @@ footer {
   .about {
     padding: 40px 16px;
   }
+
+  /* ✅ FIXED INTRO ALIGNMENT */
+  .about .intro {
+    text-align: left;
+    padding-left: 0;
+    margin-left: 0;
+    width: 100%;
+    justify-self: start;
+  }
+
+  .intro h4,
+  .intro .name,
+  .intro .role {
+    margin: 0 0 8px;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .name span {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
   .me img, .side img {
     width: 180px;
     height: auto;
   }
+
   footer {
     padding: 40px 16px;
   }
@@ -445,7 +486,6 @@ footer {
     text-align: justify;
   }
 
-  /* Smaller dropdown icon and EN, moved upward */
   .lang {
     font-size: 12px;
     transform: translateY(-4px);
@@ -505,6 +545,12 @@ footer {
 }
 .card:hover img {
   transform: scale(1.05);
+}
+.card .description {
+  font-size: 0.85rem;
+  padding: 10px;
+  width: 90%;
+  max-width: 280px;
 }
 
 /* === Mobile gallery: 2 columns, images in pairs === */
