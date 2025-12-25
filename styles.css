@@ -79,7 +79,11 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
 /* Featured grid */
 .featured h2{margin:0 0 var(--space); font-size:18px; font-weight:600; letter-spacing:.05em; color:#2d2d2d}
 .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,24px)}
+<<<<<<< HEAD
 .card img{width:100%; aspect-ratio:1/1.2; object-fit:fit; display:block; border-radius:4px}
+=======
+.card img{width:100%; aspect-ratio:1/1.2; object-fit:cover; display:block; border-radius:4px}
+>>>>>>> 1147d09dfc8a8323ffa9529867545e90a0b34b33
 .card.hidden {
   display: none;
 }
