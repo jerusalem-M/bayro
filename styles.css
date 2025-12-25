@@ -79,7 +79,7 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
 /* Featured grid */
 .featured h2{margin:0 0 var(--space); font-size:18px; font-weight:600; letter-spacing:.05em; color:#2d2d2d}
 .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,24px)}
-.card img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block; border-radius:4px}
+.card img{width:100%; aspect-ratio:1/1.2; object-fit:fit; display:block; border-radius:4px}
 .card.hidden {
   display: none;
 }
@@ -228,7 +228,7 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
 .me img {
   width: 220px;
   height: 280px;
-  object-fit: cover;
+  object-fit: fit;
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -272,7 +272,7 @@ section{padding:var(--space-xl) clamp(22px,5vw,72px)}
 .side img {
   width: 280px;
   height: 280px;
-  object-fit: cover;
+  object-fit: fit;
   display: block;
   border-radius: 8px;
   position: relative;
